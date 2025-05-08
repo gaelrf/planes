@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Todos los Planes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Todos los Planes</h1>
+    <ul>
+        <li th:each="plan : ${allPlans}">
+            <h2 th:text="${plan.titulo}"></h2>
+            <p th:text="${plan.descripcion}"></p>
+            <p>Fecha: <span th:text="${plan.fecha}"></span></p>
+            <p>Lugar: <span th:text="${plan.lugar}"></span></p>
+            <a th:href="@{/plans/{id}(id=${plan.id})}">Ver Detalles</a>
+        </li>
+    </ul>
+    <button onclick="location.href='/plans/new'">Crear Nuevo Plan</button>
+</body>
+</html>

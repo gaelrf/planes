@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Detalles del Plan</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1 th:text="${plan.titulo}"></h1>
+    <p><strong>Descripción:</strong> <span th:text="${plan.descripcion}"></span></p>
+    <p><strong>Fecha:</strong> <span th:text="${plan.fecha}"></span></p>
+    <p><strong>Lugar:</strong> <span th:text="${plan.lugar}"></span></p>
+    <p><strong>Capacidad Máxima:</strong> <span th:text="${plan.capacidadMaxima}"></span></p>
+    <p><strong>Creador:</strong> <span th:text="${plan.creador.email}"></span></p>
+    <h2>Usuarios Apuntados</h2>
+    <ul>
+        <li th:each="usuario : ${plan.participantes}" th:text="${usuario.email}"></li>
+    </ul>
+    <button onclick="location.href='/plans'">Volver</button>
+    <form th:action="@{/plans/{id}/join(id=${plan.id})}" method="post">
+        <button type="submit" th:if="${canJoin}">Unirse al Plan</button>
+    </form>
+</body>
+</html>
